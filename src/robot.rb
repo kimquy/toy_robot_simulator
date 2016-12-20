@@ -40,13 +40,12 @@ class Robot
   end
 
   def turn_to(direction)
-    state.facing =
-      case state.facing
-        when "NORTH" then direction == :left ? "WEST" : "EAST"
-        when "SOUTH" then direction == :left ? "EAST" : "WEST"
-        when "WEST" then direction == :left ? "SOUTH" : "NORTH"
-        when "EAST" then direction == :left ? "NORTH" : "SOUTH"
-      end
+    case state.facing
+    when "NORTH" then turn_from_north(direction)
+    when "SOUTH" then turn_from_south(direction)
+    when "WEST" then turn_from_west(direction)
+    when "EAST" then turn_from_east(direction)
+    end
   end
 
   def move_robot
@@ -63,6 +62,22 @@ class Robot
       state.x = x
       state.y = y
     end
+  end
+
+  def turn_from_north(direction)
+    state.facing = direction == :left ? "WEST" : "EAST"
+  end
+
+  def turn_from_south(direction)
+    state.facing = direction == :left ? "EAST" : "WEST"
+  end
+
+  def turn_from_west(direction)
+    state.facing = direction == :left ? "SOUTH" : "NORTH"
+  end
+
+  def turn_from_east(direction)
+    state.facing = direction == :left ? "NORTH" : "SOUTH"
   end
 
   class State
