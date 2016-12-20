@@ -1,6 +1,5 @@
 GEM
   specs:
-    diff-lcs (1.2.5)
     rspec (3.5.0)
       rspec-core (~> 3.5.0)
       rspec-expectations (~> 3.5.0)
@@ -19,7 +18,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  diff-lcs
   rspec
 
 BUNDLED WITH
