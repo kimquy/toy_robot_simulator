@@ -27,8 +27,6 @@ class Instruction
     @moves = instructions.slice(
       instructions.index { |item| item.include?("PLACE") },
       instructions.size
-    )
-
-    @moves = @moves.map(&:strip)
+    ).map(&:strip)
   end
 end
