@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/kimquy/toy_robot_simulator.svg?branch=master)](https://travis-ci.org/kimquy/toy_robot_simulator)
+
 ## Toy Robot Simulator
 
 **Long Nguyen** - long.polyglot@gmail.com
