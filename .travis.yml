@@ -1,4 +1,6 @@
 language: ruby
+bundler_args: --jobs 10 --retry 10
 sudo: false
 rvm:
   - 2.2
+  - ruby-head
