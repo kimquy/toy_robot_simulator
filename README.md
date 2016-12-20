@@ -1,5 +1,7 @@
 [![Build Status](https://travis-ci.org/kimquy/toy_robot_simulator.svg?branch=master)](https://travis-ci.org/kimquy/toy_robot_simulator)
 
+[![Code Climate](https://codeclimate.com/github/kimquy/toy_robot_simulator/badges/gpa.svg)](https://codeclimate.com/github/kimquy/toy_robot_simulator)
+
 ## Toy Robot Simulator
 
 **Long Nguyen** - long.polyglot@gmail.com
