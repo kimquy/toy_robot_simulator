@@ -30,8 +30,8 @@ Style/SpaceBeforeFirstArg:
   Enabled: false
 
 Style/PredicateName:
-  Enabled: false # Doesn't understand `has_secure_token`, though there's promising discussion here: https://github.com/bbatsov/rubocop/issues/1741
-
+  Enabled: false
+  
 Style/Next:
   Enabled: false
 
@@ -97,9 +97,8 @@ Style/RegexpLiteral:
   Enabled: false
 
 Rails/HasAndBelongsToMany:
-  Enabled: false # At the moment MultiEditble is the problem, for has_many through we'd need to interpolate the join table for Configs and Docs
+  Enabled: false
 
-# Disable some New Rules from Rubocop 0.39
 Style/FrozenStringLiteralComment:
   Enabled: false
 
