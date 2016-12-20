@@ -19,6 +19,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  diff-lcs
   rspec
 
 BUNDLED WITH
