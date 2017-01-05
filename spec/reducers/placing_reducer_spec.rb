@@ -7,8 +7,8 @@ RSpec.describe PlacingReducer do
   context "nil location" do
     let(:location) { nil }
 
-    it "returns error state" do
-      expect(PlacingReducer.exec(state, location, board).error).to eq(true)
+    it "returns nil state" do
+      expect(PlacingReducer.exec(state, location, board).facing).to eq(nil)
     end
   end
 
@@ -16,24 +16,24 @@ RSpec.describe PlacingReducer do
     context "location at '5,5,NORTH'" do
       let(:location) { "5,5,NORTH" }
 
-      it "returns error state" do
-        expect(PlacingReducer.exec(state, location, board).error).to eq(true)
+      it "returns nil state" do
+        expect(PlacingReducer.exec(state, location, board).facing).to eq(nil)
       end
     end
 
     context "location at '0,5,NORTH'" do
       let(:location) { "0,5,NORTH" }
 
-      it "returns error state" do
-        expect(PlacingReducer.exec(state, location, board).error).to eq(true)
+      it "returns nil state" do
+        expect(PlacingReducer.exec(state, location, board).facing).to eq(nil)
       end
     end
 
     context "location at '5,0,NORTH'" do
       let(:location) { "5,0,NORTH" }
 
-      it "returns error state" do
-        expect(PlacingReducer.exec(state, location, board).error).to eq(true)
+      it "returns nil state" do
+        expect(PlacingReducer.exec(state, location, board).facing).to eq(nil)
       end
     end
   end
@@ -44,7 +44,6 @@ RSpec.describe PlacingReducer do
 
       it "returns new state" do
         new_state = PlacingReducer.exec(state, location, board)
-        expect(new_state.error).to eq(false)
         expect(new_state.x).to eq(2)
         expect(new_state.y).to eq(2)
         expect(new_state.facing).to eq("SOUTH")
@@ -56,7 +55,6 @@ RSpec.describe PlacingReducer do
 
       it "returns new state" do
         new_state = PlacingReducer.exec(state, location, board)
-        expect(new_state.error).to eq(false)
         expect(new_state.x).to eq(0)
         expect(new_state.y).to eq(2)
         expect(new_state.facing).to eq("WEST")
@@ -68,7 +66,6 @@ RSpec.describe PlacingReducer do
 
       it "returns new state" do
         new_state = PlacingReducer.exec(state, location, board)
-        expect(new_state.error).to eq(false)
         expect(new_state.x).to eq(4)
         expect(new_state.y).to eq(4)
         expect(new_state.facing).to eq("EAST")

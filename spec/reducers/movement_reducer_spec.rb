@@ -5,7 +5,7 @@ RSpec.describe MovementReducer do
 
   context "valid moves" do
     context "state at (0,0) and facing North" do
-      let(:state) { State.new }
+      let(:state) { State.new(0, 0, "NORTH") }
 
       it "returns new correct state" do
         expect(MovementReducer.exec(state, board).to_s).to eq("0,1,NORTH")

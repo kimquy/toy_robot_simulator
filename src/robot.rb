@@ -8,18 +8,22 @@ class Robot
     new(board, instruction).perform
   end
 
-  attr_reader :board, :instruction, :state
+  attr_reader :board, :instruction, :state, :moves
 
   def initialize(board, instruction, state = State.new)
     @state = state
     @board = board
     @instruction = instruction
+    @moves = @instruction.moves
   end
 
   def perform
-    place_robot(instruction.first_move)
+    while moves.size.positive? && state.facing.nil?
+      place_robot(moves.first)
+      @moves = @moves.drop(1) if state.facing.nil?
+    end
 
-    instruction.other_moves.each do |move|
+    moves.each do |move|
       action, location = move.split(" ")
       case action
         when "MOVE" then move_robot
@@ -39,17 +43,14 @@ class Robot
   end
 
   def place_robot(location)
-    return if state.error
     @state = PlacingReducer.exec(state, location, board)
   end
 
   def turn_to(direction)
-    return if state.error
     @state = DirectionReducer.exec(state, direction)
   end
 
   def move_robot
-    return if state.error
     @state = MovementReducer.exec(state, board)
   end
 end

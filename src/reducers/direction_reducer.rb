@@ -12,7 +12,6 @@ class DirectionReducer
     when "WEST_RIGHT" then new_state.facing = "NORTH"
     when "EAST_LEFT" then new_state.facing = "NORTH"
     when "EAST_RIGHT" then new_state.facing = "SOUTH"
-    else new_state.error = true
     end
 
     new_state

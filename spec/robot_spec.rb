@@ -8,6 +8,7 @@ RSpec.describe Robot do
   let(:instruction4) { Instruction.load(file_path: "./test_files/4.txt") }
   let(:instruction5) { Instruction.load(file_path: "./test_files/5.txt") }
   let(:instruction6) { Instruction.load(file_path: "./test_files/6.txt") }
+  let(:instruction7) { Instruction.load(file_path: "./test_files/7.txt") }
 
   describe ".perform" do
     it "report correct value" do
@@ -17,6 +18,7 @@ RSpec.describe Robot do
       expect(Robot.perform(board: board, instruction: instruction4)).to eq("")
       expect(Robot.perform(board: board, instruction: instruction5)).to eq("")
       expect(Robot.perform(board: board, instruction: instruction6)).to eq("")
+      expect(Robot.perform(board: board, instruction: instruction7)).to eq("3,2,EAST")
     end
   end
 end
