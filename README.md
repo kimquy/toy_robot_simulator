@@ -16,7 +16,7 @@ instruction will be the list of moves that tell the robot what to do.
 ```ruby
 # Example
 
-board = Board.new(10,10)
+board = Board.new(5, 5)
 instruction = Instruction.load(file_path: "./test.txt")
 
 Robot.perform(board: board, instruction: instruction)
@@ -30,4 +30,14 @@ Robot.perform(board: board, instruction: instruction)
 # run bundle install to install all needed gems
 # run rspec command
 rspec
+```
+
+#### Executable
+
+The program can be run to test again some text file. For example, in the command line run the following command
+
+```ruby
+# cd into_the_project
+# ruby script/app.rb test_file_path
+ruby script/app.rb ./test_files/1.txt
 ```
