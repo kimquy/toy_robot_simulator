@@ -1,5 +1,5 @@
 class State
-  attr_accessor :x, :y, :facing, :error
+  attr_accessor :x, :y, :facing
 
   def initialize(x = 0, y = 0, facing = nil)
     @x = x
