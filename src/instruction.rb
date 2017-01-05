@@ -16,21 +16,8 @@ class Instruction
     self
   end
 
-  def first_move
-    moves.first.split(" ")[1]
-  end
-
-  def other_moves
-    moves.drop(1)
-  end
-
   private
 
-  # init_moves()
-  # The first valid command to the robot is a PLACE command, after that,
-  # any sequence of commands may be issued, in any order, including another
-  # PLACE command. The application should discard all commands in the sequence
-  # until a valid PLACE command has been executed.
   def init_moves
     @moves = instructions.slice(
       instructions.index { |item| item.include?("PLACE") }.to_i,
