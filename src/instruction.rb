@@ -16,6 +16,14 @@ class Instruction
     self
   end
 
+  def first_move
+    moves.first.split(" ")[1]
+  end
+
+  def other_moves
+    moves.drop(1)
+  end
+
   private
 
   # init_moves()
@@ -25,7 +33,7 @@ class Instruction
   # until a valid PLACE command has been executed.
   def init_moves
     @moves = instructions.slice(
-      instructions.index { |item| item.include?("PLACE") },
+      instructions.index { |item| item.include?("PLACE") }.to_i,
       instructions.size
     ).map(&:strip)
   end

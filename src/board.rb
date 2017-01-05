@@ -7,8 +7,8 @@ class Board
   end
 
   def off_board?(x, y)
-    x < 0 ||
-    y < 0 ||
+    x.negative? ||
+    y.negative? ||
     x >= x_dimension ||
     y >= y_dimension
   end

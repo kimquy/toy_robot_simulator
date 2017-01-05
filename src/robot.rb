@@ -1,3 +1,8 @@
+require_relative './state'
+require_relative './reducers/direction_reducer'
+require_relative './reducers/movement_reducer'
+require_relative './reducers/placing_reducer'
+
 class Robot
   def self.perform(board:, instruction:)
     new(board, instruction).perform
@@ -12,14 +17,15 @@ class Robot
   end
 
   def perform
-    instruction.moves.each do |move|
-      case move.split(" ").first
+    place_robot(instruction.first_move)
+
+    instruction.other_moves.each do |move|
+      action, location = move.split(" ")
+      case action
         when "MOVE" then move_robot
-        when "LEFT" then turn_to(:left)
-        when "RIGHT" then turn_to(:right)
-        when "PLACE" then place_robot(move.split(" ")[1])
+        when "LEFT" || "RIGHT" then turn_to(action)
+        when "PLACE" then place_robot(location)
         when "REPORT" then report
-        else puts "Invalid move #{move}"
       end
     end
 
@@ -33,70 +39,17 @@ class Robot
   end
 
   def place_robot(location)
-    x, y, facing = location.split(",")
-    x = x.to_i
-    y = y.to_i
-    state.update(x: x, y: y, facing: facing) unless board.off_board?(x, y)
+    return if state.error
+    @state = PlacingReducer.exec(state, location, board)
   end
 
   def turn_to(direction)
-    case state.facing
-    when "NORTH" then turn_from_north(direction)
-    when "SOUTH" then turn_from_south(direction)
-    when "WEST" then turn_from_west(direction)
-    when "EAST" then turn_from_east(direction)
-    end
+    return if state.error
+    @state = DirectionReducer.exec(state, direction)
   end
 
   def move_robot
-    case state.facing
-    when "NORTH" then update_position(state.x, state.y + 1)
-    when "SOUTH" then update_position(state.x, state.y - 1)
-    when "WEST" then update_position(state.x - 1, state.y)
-    when "EAST" then update_position(state.x + 1, state.y)
-    end
-  end
-
-  def update_position(x, y)
-    unless board.off_board?(x, y)
-      state.x = x
-      state.y = y
-    end
-  end
-
-  def turn_from_north(direction)
-    state.facing = direction == :left ? "WEST" : "EAST"
-  end
-
-  def turn_from_south(direction)
-    state.facing = direction == :left ? "EAST" : "WEST"
-  end
-
-  def turn_from_west(direction)
-    state.facing = direction == :left ? "SOUTH" : "NORTH"
-  end
-
-  def turn_from_east(direction)
-    state.facing = direction == :left ? "NORTH" : "SOUTH"
-  end
-
-  class State
-    attr_accessor :x, :y, :facing
-
-    def initialize
-      @x = 0
-      @y = 0
-      @facing = 'NORTH'
-    end
-
-    def update(x:, y:, facing:)
-      @x = x
-      @y = y
-      @facing = facing
-    end
-
-    def to_s
-      "#{x},#{y},#{facing}"
-    end
+    return if state.error
+    @state = MovementReducer.exec(state, board)
   end
 end

@@ -20,6 +20,8 @@
 require_relative '../src/board.rb'
 require_relative '../src/instruction.rb'
 require_relative '../src/robot.rb'
+require_relative '../src/state.rb'
+require 'pry'
 
 RSpec.configure do |config|
   # rspec-expectations config goes here. You can use an alternate
